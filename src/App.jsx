@@ -1,7 +1,8 @@
 import './App.css'
 import { EventCreateForm } from './components/EventCreateForm'
 import { Theme } from './components/Theme'
-import { Banner } from './components/Banner'
+import { Banner } from './components/Banner';
+import { EventCard } from './components/EventCard';
 
 function App() {
 
@@ -30,6 +31,17 @@ function App() {
       id: 6,
       name: 'data cloud'
     }, 
+  ];
+
+  const events = [
+    {
+      id: 1,
+      theme: themes[0],
+      title: 'Mulheres no Front',
+      date: new Date,
+      image: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
+      link: '#'
+    }
   ]
 
   return (
@@ -43,14 +55,15 @@ function App() {
 
         <EventCreateForm />
 
-        <section>
-          <Theme  theme={themes[0]} />
-          <Theme  theme={themes[1]} />
-          <Theme  theme={themes[2]} />
-          <Theme  theme={themes[3]} />
-          <Theme  theme={themes[4]} />
-          <Theme  theme={themes[5]} />
-        </section>
+        { /* Percorrendo array com .map */
+          themes.map(item => (
+            <section key={item.id}>
+              <Theme theme={item} />
+              <EventCard event={events[0]} />
+            </section>
+          ))
+        }
+
       </main>
     </>
   )
